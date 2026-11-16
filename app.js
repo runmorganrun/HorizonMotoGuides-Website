@@ -1,4 +1,4 @@
-const routes = ["home", "tours", "booking", "blog", "guides", "suggest", "admin"];
+const routes = ["home", "tours", "booking", "blog", "guides", "suggest", "admin", "route"];
 const navItems = [
   ["tours", "Tours"], ["booking", "Booking"], ["blog", "Blog"],
   ["guides", "Guides"], ["suggest", "Suggest a Ride"], ["admin", "Admin Dashboard"]
@@ -68,6 +68,33 @@ const highPasses = [
   ["Red Hill Pass", "10,051", "US 285", "Open"],
   ["Cumbres Pass", "10,022", "SH 17", "Open"]
 ];
+const topRoutes = [
+  { slug: "rocky-mountain-national-park", name: "Rocky Mountain National Park", road: "Trail Ridge Road · US 34", image: "peak",
+    intro: "Trail Ridge Road crosses Rocky Mountain National Park between Estes Park and Grand Lake and is the highest continuous paved road in the United States, with miles of riding above treeline.",
+    stats: [["About 48 mi", "Estes Park to Grand Lake"], ["12,183 ft", "High point"], ["Late May – Oct", "Typical season"]],
+    highlights: [["Many Parks Curve & Rainbow Curve", "Sweeping overlooks on the climb from Estes Park, with views back over the valleys below."], ["Alpine Visitor Center", "Near Fall River Pass at 11,796 ft. A good break before the descent to the west side."], ["Milner Pass", "Cross the Continental Divide at 10,759 ft beside Poudre Lake."], ["Kawuneeche Valley", "A gentler west-side valley ride toward Grand Lake, known for moose sightings."]],
+    tips: "The road closes for winter, usually from mid-October until late May. A park entrance pass is required, and timed-entry reservations may be needed in peak season. Expect temperatures at the summit to be 20–30°F colder than in Estes Park." },
+  { slug: "million-dollar-highway", name: "Million Dollar Highway", road: "US 550 · San Juan Mountains", image: "road",
+    intro: "The stretch of US 550 between Ouray and Silverton is one of the most famous rides in the country: tight hairpins carved into cliffs, steep drop-offs, few guardrails and big San Juan views.",
+    stats: [["About 25 mi", "Ouray to Silverton"], ["11,018 ft", "Red Mountain Pass"], ["Year-round", "Weather permitting"]],
+    highlights: [["Uncompahgre Gorge", "Just south of Ouray, the road clings to sheer canyon walls above the river."], ["Red Mountain Pass", "The summit at 11,018 ft, surrounded by the iron-red peaks and old mining structures that give it its name."], ["Silverton", "A historic mining town and the northern terminus of the Durango & Silverton Narrow Gauge Railroad."], ["Ouray", "Known as the Switzerland of America, with hot springs and a walkable historic main street."]],
+    tips: "The shoulders are narrow and the drop-offs sheer, so take hairpins slowly and stay well inside your lane. Winter storms and avalanche control can close the pass, and afternoon thunderstorms are common in summer." },
+  { slug: "san-juan-mountain-loop", name: "San Juan Mountain Loop", road: "San Juan Skyway · US 550, SH 145, US 160", image: "mountains",
+    intro: "The San Juan Skyway is a loop through southwest Colorado that links Durango, Silverton, Ouray, Telluride and Mesa Verde country, with four passes above 10,000 ft along the way.",
+    stats: [["About 235 mi", "Full loop"], ["4 passes", "Above 10,000 ft"], ["June – Sept", "Best season"]],
+    highlights: [["Coal Bank & Molas Passes", "Back-to-back climbs on US 550 between Durango and Silverton, at 10,640 and 10,910 ft."], ["Red Mountain Pass", "The Million Dollar Highway section, from Silverton to Ouray over 11,018 ft."], ["Dallas Divide & Telluride", "Classic views of the Sneffels Range, then a short spur into Telluride's box canyon."], ["Lizard Head Pass", "A high meadow crossing at 10,222 ft on SH 145 before the long descent toward Dolores."]],
+    tips: "Most riders split the loop over two days, with an overnight in Ouray or Telluride. Fill up whenever you can between towns, since stretches between fuel stops can be long." },
+  { slug: "independence-pass", name: "Independence Pass", road: "SH 82 · Twin Lakes to Aspen", image: "pass",
+    intro: "Independence Pass climbs SH 82 from Twin Lakes to the Continental Divide at 12,095 ft before dropping into Aspen. It is one of the highest paved passes in Colorado and among the most dramatic.",
+    stats: [["About 40 mi", "Twin Lakes to Aspen"], ["12,095 ft", "Summit"], ["Late May – Oct", "Typical season"]],
+    highlights: [["Twin Lakes", "Twin glacial lakes at the foot of Mount Elbert, Colorado's highest peak, on the eastern approach."], ["The summit", "A short walk from the parking area leads to sweeping views along the Continental Divide."], ["Independence Ghost Town", "The remains of an 1880s mining camp just west of the summit."], ["The Narrows", "Single-lane sections on the Aspen side where the road squeezes between rock and drop-off."]],
+    tips: "The pass closes for winter, usually from early November until late May. Watch for oncoming traffic in the narrow sections, and plan to cross early in the day, before afternoon storms build." },
+  { slug: "grand-mesa-scenic-byway", name: "Grand Mesa Scenic Byway", road: "SH 65 · Mesa to Cedaredge", image: "forest",
+    intro: "SH 65 climbs onto Grand Mesa, often called the world's largest flat-topped mountain, rising from desert canyon to cool forest and lakes above 10,000 ft.",
+    stats: [["About 63 mi", "Byway length"], ["10,839 ft", "Grand Mesa summit"], ["Year-round", "Paved highway"]],
+    highlights: [["Plateau Creek Canyon", "Red-rock canyon riding at the northern start of the byway, near I-70."], ["Mesa Lakes", "The first of the mesa's hundreds of lakes, set among spruce and fir forest."], ["Grand Mesa Visitor Center", "A good stop near the top for maps, restrooms and lake views."], ["Lands End Road", "An optional gravel spur to an overlook on the mesa's western rim, with views far into Utah."]],
+    tips: "Fall brings some of the best aspen color in the state. Lands End Road is unpaved, so check conditions before taking a road bike out to the rim. Temperatures on top can be 20°F cooler than in the valleys." }
+];
 function header(active, dashboard = false) {
   const links = navItems.map(([route, label]) => `<a class="${route === active ? "active " : ""}${route === "admin" ? "admin-link" : ""}" href="#/${route}">${label}</a>`).join("");
   return `<header class="topbar"><div class="shell nav"><a class="brand" href="#/home">HORIZON MOTO <span>GUIDES</span></a><button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button><nav class="navlinks">${links}<a class="button small" href="#/booking">Book Tour <span aria-hidden="true">→</span></a></nav></div></header>`;
@@ -76,7 +103,7 @@ function footer() {
   return `<footer class="footer"><div class="shell"><div class="footer-grid">
     <div><a class="brand" href="#/home">HORIZON MOTO <span>GUIDES</span></a><p>Professional motorcycle guide services for the Colorado Rockies. Expertly led tours, custom route planning, and unforgettable alpine adventures for every rider.</p><a class="button small" href="#/booking">◎ &nbsp; Book a Tour</a><p><strong>FOLLOW OUR RIDES</strong><br><a href="#/blog">◎ Instagram</a> &nbsp; <a href="#/blog">f Facebook</a></p></div>
     <div><h4>Explore</h4><div class="footer-links">${navItems.slice(0, 5).map(([route, label]) => `<a href="#/${route}">${label}</a>`).join("")}</div></div>
-    <div><h4>Top Routes</h4><div class="footer-links"><a href="#/tours">Rocky Mountain National Park</a><a href="#/tours">Million Dollar Highway</a><a href="#/tours">San Juan Mountain Loop</a><a href="#/tours">Independence Pass</a><a href="#/tours">Grand Mesa Scenic Byway</a></div></div>
+    <div><h4>Top Routes</h4><div class="footer-links"><a href="#/route/rocky-mountain-national-park">Rocky Mountain National Park</a><a href="#/route/million-dollar-highway">Million Dollar Highway</a><a href="#/route/san-juan-mountain-loop">San Juan Mountain Loop</a><a href="#/route/independence-pass">Independence Pass</a><a href="#/route/grand-mesa-scenic-byway">Grand Mesa Scenic Byway</a></div></div>
     <div><h4>Contact Us</h4><p>⌖ &nbsp; HORIZON MOTO GUIDES HQ,<br>&nbsp;&nbsp;&nbsp;&nbsp; Colorado, USA</p><p>☎ &nbsp; +1 (719) 459-5456</p><p>✉ &nbsp; rides@horizonmotoguides.com</p><p>◷ &nbsp; Daily: 8:00 AM – 6:00 PM MST</p></div>
   </div><div class="copyright"><span>© 2026 Horizon Moto Guides. All rights reserved.</span><span><a href="#/blog">Riding Tips</a> &nbsp;&nbsp; <a href="#/suggest">Suggest a Ride</a></span></div></div></footer>`;
 }
@@ -116,16 +143,25 @@ function adminPage() {
   return `${header("admin", true)}<main class="dashboard"><section class="dashboard-live"><div class="shell dashboard-grid"><div><span class="eyebrow">Live Operations · Grid: 39.7392° N / 104.9903° W · ROCKYRIDE HQ</span><h1>Mission Telemetry & Fleet Control</h1><p class="muted">Real-time situational awareness across high-altitude Continental Divide corridors, dispatch scheduling, and Colorado Rocky Mountain tour readiness.</p><div class="stat-grid"><div class="stat-tile"><span>Booking throughput</span><strong>94.8%</strong><span class="orange">+18% vs last cycle</span></div><div class="stat-tile"><span>Active dispatches</span><strong>14 Teams</strong><span>3 Alpine Corridors</span></div><div class="stat-tile"><span>Fleet readiness</span><strong>28 / 30</strong><span class="orange">2 Units in service</span></div></div><div class="panel"><h3>△ &nbsp; Active High-Pass Route Status</h3><p class="muted">Updated every 90 seconds from scout relays</p><div class="status-list">${highPasses.map(([n,e,r,s]) => `<div class="status-row"><span><strong>⌖ &nbsp; ${n}</strong><br><small class="muted">${r} &nbsp; · &nbsp; ${e} ft</small></span><span class="status ${s === "Advisory" ? "warn" : s === "Closed" ? "closed" : ""}">${s}</span></div>`).join("")}</div></div></div><aside><div class="panel"><span class="eyebrow">Direct Command Deck</span><h3>Mission Control Actions</h3><p class="muted">Trigger authoritative state changes, update customer tour availability, and broadcast weather flags.</p>${[["Rate Engine","Publish the current standard daily package rates and hourly touring booking tariffs."],["Weather Gate Triggers","Toggle high-pass seasonal blackout dates in the customer booking calendar."],["Live Roster","Deploy an additional guide lead group to the Continental Divide network."]].map(([title,desc]) => `<div class="panel" style="padding:13px;margin-top:12px"><strong>${title}</strong><p class="muted">${desc}</p><button class="button small command-button" data-command="${title}">Execute action</button></div>`).join("")}<p class="muted">Navigation relays</p><a class="button secondary small" href="#/tours">Tour inventory</a> <a class="button secondary small" href="#/booking">Bookings desk</a></div><div class="panel" style="margin-top:14px"><strong>⚑ Pass Advisory Notice</strong><p class="muted">Sudden afternoon squalls reported across US-550 summit. Afternoon multi-day riders rerouted to lower-valley conditions.</p></div></aside></div></section>
   <section class="section"><div class="shell"><div class="section-head left"><span class="eyebrow">ROCKYRIDE Motorcycle Tours · Rate Architecture</span><h2>Package Architecture & Rate Engine</h2><p>Configure baseline daily rates for scheduled tours, adjust hourly rates for bespoke routes, and review real-time trip pricing for Colorado Rocky Mountain expeditions.</p></div><div class="package-list"><h3>Active Expeditions Catalog</h3>${tours.slice(0, 3).map(t => `<article class="package-item"><img src="${photo(t.image, 300)}" alt="" loading="lazy"><div class="package-copy"><span class="orange" style="font-size:9px">${t.type}</span><h3>${t.title}</h3><p>⌖ &nbsp; Colorado, CO &nbsp; · &nbsp; ◷ &nbsp; Expert guided</p></div><div><span class="muted">LIVE CALCULATED RATE</span><br><strong class="price">${t.price}</strong></div><a class="button small" href="#/booking">Reserve slot →</a></article>`).join("")}<div class="banner-cta"><div><strong>Designing a private custom mountain itinerary?</strong><p>Clients can propose specific mountain passes, trail coordinates, or lodging preferences.</p></div><a href="#/suggest" class="button secondary small">Suggest a Ride</a></div></div></div></section><section class="section compact"><div class="shell"><div class="section-head"><span class="eyebrow">Tour Operations & Risk Standards</span><h2>Booking Protocols & Cancellation Governance</h2><p>Review operational policies detailing operator liability, adverse alpine weather contingency protocols, and emergency backcountry evacuation clauses.</p></div><div class="panel faq" style="max-width:760px;margin:auto">${[["Operator Liability & Participant Risk Accord","Mandatory rider waiver"],["Adverse Alpine Weather Contingency","Mountain weather clause"],["Commercial Reservation & Cancellation Standard","72-Hour Deposit Refund Standard"],["Emergency Backcountry Evacuation Protocol","Emergency Protocol"]].map(([q,a]) => `<details><summary>${q} <span class="orange"> · ${a}</span></summary><p>Standard operating terms enforced by Horizon Moto Guides LLC. Every route is reviewed against current weather, rider readiness, and safety requirements.</p></details>`).join("")}</div></div></section></main>${footer()}`;
 }
+function routePage(slug) {
+  const r = topRoutes.find(item => item.slug === slug);
+  if (!r) return toursPage();
+  return `${header("tours")}<main><section class="page-hero"><div class="shell"><span class="eyebrow">${r.road}</span><h1 class="page-title">${r.name}</h1><p class="subhead">${r.intro}</p><div class="stats-box route-stats">${r.stats.map(([value, label]) => `<div><strong>${value}</strong><span>${label}</span></div>`).join("")}</div></div></section>
+  <section class="section compact"><div class="shell split route-split"><img class="route-image" src="${photo(r.image, 1200)}" alt="${r.name}" loading="lazy"><div class="feature-panel"><h3>Route highlights</h3>${r.highlights.map(([title, text]) => `<div class="feature-row"><div class="iconbox">⌖</div><div><strong>${title}</strong><p>${text}</p></div></div>`).join("")}</div></div></section>
+  <section class="section compact"><div class="shell"><div class="panel route-tips"><h3>Good to know</h3><p>${r.tips}</p><a class="button" href="#/booking">Ride it with a guide →</a> <a class="button secondary" href="#/tours">Browse all tours</a></div></div></section></main>${footer()}`;
+}
 function guidesBlogRoute(name) { return name === "guides" ? guidesPage() : blogPage(); }
 function render() {
-  let route = location.hash.replace(/^#\/?/, "").split("?")[0] || "home";
+  const [path, slug] = location.hash.replace(/^#\/?/, "").split("?")[0].split("/");
+  let route = path || "home";
   if (!routes.includes(route)) route = "home";
   document.body.classList.toggle("dashboard-page", route === "admin");
   document.getElementById("app").innerHTML = ({
     home, tours: toursPage, booking: bookingPage, blog: blogPage,
-    guides: guidesPage, suggest: suggestPage, admin: adminPage
+    guides: guidesPage, suggest: suggestPage, admin: adminPage, route: () => routePage(slug)
   })[route]();
-  document.title = `${route === "home" ? "Ride the Rockies" : route[0].toUpperCase() + route.slice(1)} — Horizon Moto Guides`;
+  const pageName = route === "route" ? topRoutes.find(r => r.slug === slug)?.name || "Tours" : route === "home" ? "Ride the Rockies" : route[0].toUpperCase() + route.slice(1);
+  document.title = `${pageName} — Horizon Moto Guides`;
   if (route === "booking") setupCalendar();
 }
 function setupCalendar() {
@@ -197,5 +233,5 @@ document.addEventListener("submit", event => {
   notify(form.dataset.message);
   form.reset();
 });
-window.addEventListener("hashchange", render);
+window.addEventListener("hashchange", () => { render(); window.scrollTo(0, 0); });
 render();
