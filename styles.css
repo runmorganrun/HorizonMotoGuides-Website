@@ -31,6 +31,7 @@ img { display: block; width: 100%; }
 .nav { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 30px; }
 .brand { flex: 0 0 auto; color: #eceef2; font-size: 19px; font-style: italic; font-weight: 700; letter-spacing: -.8px; }
 .brand span { color: var(--orange); }
+.topbar .brand { font-size: 24.7px; }
 .navlinks { display: flex; align-items: center; justify-content: flex-end; gap: clamp(13px, 2.4vw, 32px); }
 .navlinks a { color: #d7d9de; font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; transition: color .2s; white-space: nowrap; }
 .navlinks a:hover, .navlinks a.active { color: var(--orange); }
@@ -199,6 +200,7 @@ img { display: block; width: 100%; }
 
 @media (max-width: 900px) {
   .brand { font-size: 16px; }
+  .topbar .brand { font-size: 20.8px; }
   .nav { gap: 14px; }
   .navlinks { gap: 12px; }
   .navlinks a { font-size: 9px; letter-spacing: .6px; }
