@@ -103,6 +103,11 @@ img { display: block; width: 100%; }
 .filter.active, .filter:hover { border-color: var(--orange); background: rgba(255,134,23,.12); color: var(--orange); }
 .tour-card .card-image { height: 190px; }
 .tour-card .card-body { padding: 17px; }
+.tour-card { overflow: visible; }
+.tour-card .card-image { border-radius: 8px 8px 0 0; }
+.tour-title { justify-content: space-between; gap: 10px; }
+.tour-title .tip { flex: 0 0 auto; margin-top: 4px; }
+.tip-box.tip-wide { left: 0; right: 0; width: auto; }
 .guide-card .card-image { height: 230px; }
 .guide-card .card-body { min-height: 255px; }
 .guide-card .guide-role { color: var(--orange); font-size: 10px; }
