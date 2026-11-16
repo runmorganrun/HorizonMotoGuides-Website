@@ -170,6 +170,8 @@ img { display: block; width: 100%; }
 .status-row:last-child { border-bottom: 0; }
 .status { padding: 4px 7px; border-radius: 4px; background: #e9f7ef; color: #16864c; font-size: 9px; font-weight: 700; text-transform: uppercase; }
 .status.warn { background: #fff4d8; color: #a77700; }
+.status.closed { background: #fde8e8; color: #b42318; }
+.status-list { max-height: 420px; overflow-y: auto; padding-right: 6px; }
 .dashboard .button { min-height: 32px; font-size: 10px; }
 .dashboard .button.secondary { color: #222; }
 .dashboard .section-head h2 { color: #16191d; }
